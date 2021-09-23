@@ -14,13 +14,14 @@ public class Client implements IRun, IClient {
     @Autowired
     private IJustHaveALook iJustHaveALook;
 
+    @Autowired
     public Panier panier;
 
     @Override
     public void run() {
-
-        System.out.println("PAPOPE");
-        iFastLane.oneShotOrder(1,1,this);
+        iLane.addItemToCart(1,5,this.panier);
+        iLane.addItemToCart(2,1,this.panier);
+        iLane.pay(getPanierPrice(),this,this.panier);
     }
 
     private int getPanierPrice(){

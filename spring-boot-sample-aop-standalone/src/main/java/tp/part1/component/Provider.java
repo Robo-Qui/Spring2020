@@ -1,6 +1,7 @@
 package tp.part1.component;
 
 import jdk.internal.net.http.common.Pair;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import tp.part1.interfaces.IBank;
 import tp.part1.interfaces.IProvider;
@@ -11,13 +12,8 @@ import java.util.Map;
 @Component
 public class Provider implements IProvider {
 
+    @Value("#{${catalogue}}")
     public Map<Integer,Integer> catalogue;
-
-    public Provider(){
-        catalogue.put(1,100);
-        catalogue.put(2,50);
-        catalogue.put(3,25);
-    }
 
     @Override
     public int getPrice(int ref) {
