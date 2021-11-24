@@ -4,16 +4,16 @@ import interfaces.IAccount;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Compte implements IAccount {
+public class Account implements IAccount {
     private Long Id;
     private String login;
     private String password;
 
-    public Compte(){
+    public Account(){
 
     }
 
-    public Compte(String log, String pass){
+    public Account(String log, String pass){
         login = log;
         password = pass;
     }

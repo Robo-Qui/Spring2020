@@ -4,14 +4,14 @@ import interfaces.IIntitule;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Intitule implements IIntitule {
+public class Heading implements IIntitule {
     private String intitule;
     private Long id;
 
-    public Intitule() {
+    public Heading() {
     }
 
-    public Intitule(String intitule) {
+    public Heading(String intitule) {
         this.intitule = intitule;
     }
 

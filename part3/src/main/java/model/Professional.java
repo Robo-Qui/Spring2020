@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class Professionnel extends Compte implements IProfessionnal{
+public class Professional extends Account implements IProfessionnal{
     private String name;
 
     @Autowired
@@ -16,11 +16,11 @@ public class Professionnel extends Compte implements IProfessionnal{
     @Autowired(required = false)
     List<IFreeSlot> freeSlots;
 
-    public Professionnel() {
+    public Professional() {
         super();
     }
 
-    public Professionnel(String log, String pass, String name){
+    public Professional(String log, String pass, String name){
         super(log,pass);
         this.name = name;
     }
