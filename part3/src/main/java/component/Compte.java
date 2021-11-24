@@ -1,9 +1,10 @@
 package component;
 
+import interfaces.IAccount;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Compte {
+public class Compte implements IAccount {
     private Long Id;
     private String login;
     private String password;
@@ -25,18 +26,20 @@ public class Compte {
         this.Id = id;
     }
 
+    @Override
     public String getLogin() {
         return login;
     }
-
+    @Override
     public void setLogin(String login) {
         this.login = login;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
-
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }

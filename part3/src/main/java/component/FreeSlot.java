@@ -1,12 +1,14 @@
 package component;
 
+import interfaces.IFreeSlot;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import java.util.Date;
 
 @Component
-public class FreeSlot {
+public class FreeSlot implements IFreeSlot {
     private Date startTime;
     private Date endTime;
     private Long id;
@@ -27,18 +29,20 @@ public class FreeSlot {
         this.id = id;
     }
 
+    @Override
     public Date getStartTime() {
         return startTime;
     }
-
+    @Override
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
+    @Override
     public Date getEndTime() {
         return endTime;
     }
-
+    @Override
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }

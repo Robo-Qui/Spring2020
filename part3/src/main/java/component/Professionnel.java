@@ -1,14 +1,20 @@
 package component;
 
+import interfaces.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class Professionnel extends Compte{
+public class Professionnel extends Compte implements IProfessionnal{
     private String name;
-    RdvInfos infoRdv;
-    List<FreeSlot> freeSlots;
+
+    @Autowired
+    IRdvInfos infoRdv;
+
+    @Autowired(required = false)
+    List<IFreeSlot> freeSlots;
 
     public Professionnel() {
         super();
@@ -19,27 +25,33 @@ public class Professionnel extends Compte{
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    public RdvInfos getRdvInfos() {
+    @Override
+    @Autowired
+    public IRdvInfos getRdvInfos() {
         return infoRdv;
     }
-
+    @Override
     public void setRdvInfos(RdvInfos rdvInfo) {
         this.infoRdv = rdvInfo;
     }
 
-    public List<FreeSlot> getFreeSlots() {
+    @Override
+    @Autowired
+    public List<IFreeSlot> getFreeSlots() {
         return freeSlots;
     }
-
-    public void setFreeSlots(List<FreeSlot> freeSlots) {
+    @Override
+    @Autowired
+    public void setFreeSlots(List<IFreeSlot> freeSlots) {
         this.freeSlots = freeSlots;
     }
 
@@ -53,10 +65,11 @@ public class Professionnel extends Compte{
         );
     }
 
-    private String IntiList(List<Intitule> intitules){
+    @Autowired
+    private String IntiList(List<IIntitule> intitules){
         if(intitules==null) return "Aucun intitulé";
         String res = "Liste des intitulés:";
-        for(Intitule intitule : intitules){
+        for(IIntitule intitule : intitules){
             res = String.format("%s\n%s",res,intitule.toString());
         }
         return res;
