@@ -1,4 +1,4 @@
-package component;
+package model;
 
 import interfaces.IProfessionnal;
 import interfaces.IRendezVous;

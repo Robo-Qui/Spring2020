@@ -1,4 +1,4 @@
-package component;
+package model;
 
 import interfaces.IAccount;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package component;
+package model;
 
 import interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;

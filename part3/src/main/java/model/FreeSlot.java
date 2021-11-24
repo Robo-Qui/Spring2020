@@ -1,10 +1,8 @@
-package component;
+package model;
 
 import interfaces.IFreeSlot;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
 import java.util.Date;
 
 @Component

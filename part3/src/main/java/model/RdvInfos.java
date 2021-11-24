@@ -1,4 +1,4 @@
-package component;
+package model;
 
 import interfaces.IIntitule;
 import interfaces.IRdvInfos;

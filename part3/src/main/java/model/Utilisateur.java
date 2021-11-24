@@ -1,4 +1,4 @@
-package component;
+package model;
 
 import interfaces.IUser;
 import org.springframework.stereotype.Component;

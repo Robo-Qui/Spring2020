@@ -1,6 +1,6 @@
 package interfaces;
 
-import component.RdvInfos;
+import model.RdvInfos;
 
 import java.util.List;
 
