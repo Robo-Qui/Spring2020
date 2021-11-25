@@ -3,9 +3,9 @@ package tp.part1.component;
 import jdk.internal.net.http.common.Pair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import tp.part1.interfaces.IBank;
-import tp.part1.interfaces.IProvider;
-import tp.part1.interfaces.IStore;
+import tp.part1.data.component.interfaces.IBank;
+import tp.part1.data.component.interfaces.IProvider;
+import tp.part1.data.component.interfaces.IStore;
 
 import java.util.Map;
 

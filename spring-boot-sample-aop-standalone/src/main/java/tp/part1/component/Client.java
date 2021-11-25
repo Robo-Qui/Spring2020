@@ -2,7 +2,7 @@ package tp.part1.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tp.part1.interfaces.*;
+import tp.part1.data.component.interfaces.*;
 
 @Component
 public class Client implements IRun, IClient {

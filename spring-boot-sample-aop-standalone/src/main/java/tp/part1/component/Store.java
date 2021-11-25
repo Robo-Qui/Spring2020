@@ -4,7 +4,7 @@ import jdk.internal.net.http.common.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import tp.part1.interfaces.*;
+import tp.part1.data.component.interfaces.*;
 
 import java.util.Map;
 

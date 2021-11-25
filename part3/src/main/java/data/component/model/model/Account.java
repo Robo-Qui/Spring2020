@@ -1,0 +1,50 @@
+package data.component.model.model;
+
+import data.component.interfaces.IAccount;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Account implements IAccount {
+    private Long Id;
+    private String login;
+    private String password;
+
+    public Account(){
+
+    }
+
+    public Account(String log, String pass){
+        login = log;
+        password = pass;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    private void setId(Long id){
+        this.Id = id;
+    }
+
+    @Override
+    public String getLogin() {
+        return login;
+    }
+    @Override
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String ToString(){
+        return String.format("Compte, login:%s password:%s",this.login,this.password);
+    }
+}
