@@ -1,10 +1,12 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IAccount;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+
 @Component
-public class Account implements IAccount {
+@Entity
+public class Account {
     private Long Id;
     private String login;
     private String password;
@@ -26,20 +28,16 @@ public class Account implements IAccount {
         this.Id = id;
     }
 
-    @Override
     public String getLogin() {
         return login;
     }
-    @Override
     public void setLogin(String login) {
         this.login = login;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
-    @Override
     public void setPassword(String password) {
         this.password = password;
     }

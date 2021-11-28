@@ -1,20 +1,21 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
 @Component
-public class Professional extends Account implements IProfessionnal{
+public class Professional extends Account{
     private String name;
 
     @Autowired
-    IRdvInfos infoRdv;
+    RdvInfos infoRdv;
 
     @Autowired(required = false)
-    List<IFreeSlot> freeSlots;
+    List<FreeSlot> freeSlots;
 
     public Professional() {
         super();
@@ -25,33 +26,27 @@ public class Professional extends Account implements IProfessionnal{
         this.name = name;
     }
 
-    @Override
     public String getName() {
         return name;
     }
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     @Autowired
-    public IRdvInfos getRdvInfos() {
+    public RdvInfos getRdvInfos() {
         return infoRdv;
     }
-    @Override
     public void setRdvInfos(RdvInfos rdvInfo) {
         this.infoRdv = rdvInfo;
     }
 
-    @Override
     @Autowired
-    public List<IFreeSlot> getFreeSlots() {
+    public List<FreeSlot> getFreeSlots() {
         return freeSlots;
     }
-    @Override
     @Autowired
-    public void setFreeSlots(List<IFreeSlot> freeSlots) {
+    public void setFreeSlots(List<FreeSlot> freeSlots) {
         this.freeSlots = freeSlots;
     }
 
@@ -66,10 +61,10 @@ public class Professional extends Account implements IProfessionnal{
     }
 
     @Autowired
-    private String IntiList(List<IHeading> intitules){
+    private String IntiList(List<Heading> intitules){
         if(intitules==null) return "Aucun intitulé";
         String res = "Liste des intitulés:";
-        for(IHeading intitule : intitules){
+        for(Heading intitule : intitules){
             res = String.format("%s\n%s",res,intitule.toString());
         }
         return res;

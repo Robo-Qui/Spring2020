@@ -1,8 +1,8 @@
-package data.service.interfaces;
+package services.interfaces;
 
-import data.component.model.model.FreeSlot;
-import data.component.model.model.Professional;
-import data.component.model.model.RdvInfos;
+import data.model.FreeSlot;
+import data.model.Professional;
+import data.model.RdvInfos;
 
 import java.util.List;
 

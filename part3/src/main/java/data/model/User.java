@@ -1,10 +1,11 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IUser;
 import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
 
+@Entity
 @Component
-public class User extends Account implements IUser{
+public class User extends Account{
 
     public User(){
         super();

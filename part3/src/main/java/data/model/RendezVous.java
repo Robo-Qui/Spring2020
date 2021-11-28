@@ -1,19 +1,17 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IProfessionnal;
-import data.component.interfaces.IRendezVous;
-import data.component.interfaces.IUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 @Component
-public class RendezVous implements IRendezVous {
+public class RendezVous {
     @Autowired
-    private IProfessionnal prof;
+    private Professional prof;
     @Autowired
-    private IUser client;
+    private User client;
     private Date startTime;
     private Date endTime;
     private Long id;
@@ -21,7 +19,7 @@ public class RendezVous implements IRendezVous {
     public RendezVous() {
     }
 
-    public RendezVous(IProfessionnal prof, IUser client, Date startTime, Date endTime) {
+    public RendezVous(Professional prof, User client, Date startTime, Date endTime) {
         this.prof = prof;
         this.client = client;
         this.startTime = startTime;
@@ -36,40 +34,32 @@ public class RendezVous implements IRendezVous {
         this.id = id;
     }
 
-    @Override
-    public IProfessionnal getProf() {
+    public Professional getProf() {
         return prof;
     }
-    @Override
     @Autowired
-    public void setProf(IProfessionnal prof) {
+    public void setProf(Professional prof) {
         this.prof = prof;
     }
 
-    @Override
-    public IUser getClient() {
+    public User getClient() {
         return client;
     }
-    @Override
     @Autowired
-    public void setClient(IUser client) {
+    public void setClient(User client) {
         this.client = client;
     }
 
-    @Override
     public Date getStartTime() {
         return startTime;
     }
-    @Override
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    @Override
     public Date getEndTime() {
         return endTime;
     }
-    @Override
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }

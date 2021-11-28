@@ -1,9 +1,9 @@
-package data.service.implementations;
+package services.implementations;
 
-import data.component.model.model.FreeSlot;
-import data.component.model.model.Professional;
-import data.component.model.model.RendezVous;
-import data.component.model.model.User;
+import data.model.FreeSlot;
+import data.model.Professional;
+import data.model.RendezVous;
+import data.model.User;
 import data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

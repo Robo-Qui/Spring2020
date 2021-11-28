@@ -1,45 +1,41 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IHeading;
-import data.component.interfaces.IRdvInfos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import java.util.List;
 
+@Entity
 @Component
-public class RdvInfos implements IRdvInfos {
+public class RdvInfos {
     private int duree;
 
     @Autowired
-    private List<IHeading> intitules;
+    private List<Heading> intitules;
 
     private Long id;
 
     public RdvInfos() {
     }
 
-    public RdvInfos(int duree, List<IHeading> intitules) {
+    public RdvInfos(int duree, List<Heading> intitules) {
         this.duree = duree;
         this.intitules = intitules;
     }
 
-    @Override
     public int getDuree(){
         return duree;
     }
-    @Override
     public void setDuree(int length){
         this.duree = length;
     }
 
-    @Override
-    public List<IHeading> getIntitules() {
+    public List<Heading> getIntitules() {
         return intitules;
     }
     @Autowired
-    @Override
-    public void setIntitules(List<IHeading> intitules) {
+    public void setIntitules(List<Heading> intitules) {
         this.intitules = intitules;
     }
 

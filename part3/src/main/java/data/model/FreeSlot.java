@@ -1,12 +1,13 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IFreeSlot;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 @Component
-public class FreeSlot implements IFreeSlot {
+public class FreeSlot {
     private Date startTime;
     private Date endTime;
     private Long id;
@@ -27,20 +28,16 @@ public class FreeSlot implements IFreeSlot {
         this.id = id;
     }
 
-    @Override
     public Date getStartTime() {
         return startTime;
     }
-    @Override
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    @Override
     public Date getEndTime() {
         return endTime;
     }
-    @Override
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }

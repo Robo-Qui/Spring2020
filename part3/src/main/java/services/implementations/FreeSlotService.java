@@ -1,9 +1,9 @@
-package data.service.implementations;
-import data.component.model.model.FreeSlot;
+package services.implementations;
+import data.model.FreeSlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import data.repository.FreeSlotRepository;
-import data.service.interfaces.IFreeSlotService;
+import services.interfaces.IFreeSlotService;
 
 import java.util.List;
 

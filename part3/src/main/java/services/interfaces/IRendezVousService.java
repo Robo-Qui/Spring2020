@@ -1,6 +1,6 @@
-package data.service.interfaces;
+package services.interfaces;
 
-import data.component.model.model.RendezVous;
+import data.model.RendezVous;
 
 public interface IRendezVousService{
         RendezVous add(RendezVous rdv);

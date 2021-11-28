@@ -1,4 +1,4 @@
-package data.service.interfaces;
+package services.interfaces;
 
 public interface IUserService {
 }

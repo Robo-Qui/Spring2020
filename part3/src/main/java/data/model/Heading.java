@@ -1,10 +1,12 @@
-package data.component.model.model;
+package data.model;
 
-import data.component.interfaces.IHeading;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+
+@Entity
 @Component
-public class Heading implements IHeading {
+public class Heading {
     private String intitule;
     private Long id;
 
@@ -22,12 +24,10 @@ public class Heading implements IHeading {
         this.id = id;
     }
 
-    @Override
     public String getIntitule(){
         return intitule;
     }
 
-    @Override
     public void setIntitule(String inti){
         this.intitule = inti;
     }

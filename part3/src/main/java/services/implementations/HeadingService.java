@@ -1,10 +1,10 @@
-package data.service.implementations;
+package services.implementations;
 
-import data.component.model.model.Heading;
+import data.model.Heading;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import data.repository.HeadingRepository;
-import data.service.interfaces.IHeadingService;
+import services.interfaces.IHeadingService;
 
 import java.util.List;
 

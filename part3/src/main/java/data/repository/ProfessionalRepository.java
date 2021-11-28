@@ -1,6 +1,6 @@
 package data.repository;
 
-import data.component.model.model.Professional;
+import data.model.Professional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

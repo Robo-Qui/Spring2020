@@ -1,6 +1,6 @@
-package data.service.interfaces;
+package services.interfaces;
 
-import data.component.model.model.RdvInfos;
+import data.model.RdvInfos;
 
 public interface IRdvInfosService {
     RdvInfos add(RdvInfos rdvInfos);

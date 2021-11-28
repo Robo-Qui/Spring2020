@@ -1,6 +1,6 @@
-package data.service.interfaces;
+package services.interfaces;
 
-import data.component.model.model.Heading;
+import data.model.Heading;
 
 import java.util.List;
 

@@ -1,14 +1,14 @@
-package data.service.implementations;
+package services.implementations;
 
-import data.component.model.model.FreeSlot;
-import data.component.model.model.Professional;
-import data.component.model.model.RdvInfos;
+import data.model.FreeSlot;
+import data.model.Professional;
+import data.model.RdvInfos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import data.repository.ProfessionalRepository;
-import data.service.interfaces.IFreeSlotService;
-import data.service.interfaces.IProfessionalService;
-import data.service.interfaces.IRdvInfosService;
+import services.interfaces.IFreeSlotService;
+import services.interfaces.IProfessionalService;
+import services.interfaces.IRdvInfosService;
 
 import java.util.List;
 

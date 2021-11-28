@@ -1,10 +1,10 @@
-package data.service.implementations;
+package services.implementations;
 
-import data.component.model.model.RendezVous;
+import data.model.RendezVous;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import data.repository.RendezVousRepository;
-import data.service.interfaces.IRendezVousService;
+import services.interfaces.IRendezVousService;
 
 @Service
 public class RendezVousService implements IRendezVousService {

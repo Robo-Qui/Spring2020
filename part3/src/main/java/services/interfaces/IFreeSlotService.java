@@ -1,6 +1,6 @@
-package data.service.interfaces;
+package services.interfaces;
 
-import data.component.model.model.FreeSlot;
+import data.model.FreeSlot;
 
 import java.util.List;
 
