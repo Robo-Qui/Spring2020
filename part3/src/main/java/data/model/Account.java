@@ -1,44 +1,30 @@
 package data.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Data
 @Component
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String login;
     private String password;
 
-    public Account(){
-
-    }
-
-    public Account(String log, String pass){
-        login = log;
-        password = pass;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    private void setId(Long id){
-        this.Id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-    public void setLogin(String login) {
+    public Account(String login, String password) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
         this.password = password;
     }
 

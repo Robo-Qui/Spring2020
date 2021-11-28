@@ -3,6 +3,9 @@ package data.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
@@ -14,6 +17,8 @@ public class RendezVous {
     private User client;
     private Date startTime;
     private Date endTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public RendezVous() {

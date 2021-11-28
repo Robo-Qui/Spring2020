@@ -1,25 +1,26 @@
 package data.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import java.util.List;
 
+@Data
 @Entity
 @Component
+@NoArgsConstructor
 public class Professional extends Account{
     private String name;
 
     @Autowired
-    RdvInfos infoRdv;
+    private RdvInfos infoRdv;
 
     @Autowired(required = false)
-    List<FreeSlot> freeSlots;
-
-    public Professional() {
-        super();
-    }
+    private List<FreeSlot> freeSlots;
 
     public Professional(String log, String pass, String name){
         super(log,pass);

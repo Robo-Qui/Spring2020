@@ -1,44 +1,32 @@
 package data.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Component
 public class FreeSlot {
+
     private Date startTime;
     private Date endTime;
-    private Long id;
 
-    public FreeSlot() {
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public FreeSlot(Date startTime, Date endTime) {
         this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    private void setId(Long id){
-        this.id = id;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 }
