@@ -7,6 +7,8 @@ import data.model.RdvInfos;
 import java.util.List;
 
 public interface IProfessionalService {
+    List<Professional> getAllProfessionals();
+
     Professional getById(Long id);
 
     Professional getByLogin(String login);
@@ -19,5 +21,10 @@ public interface IProfessionalService {
 
     Professional addProfessionnel(Professional prof) throws Exception;
 
+    Professional updateProfessional(long id, Professional professionalRequest) throws Exception;
+
     Professional changeProfRdvInfos(Professional prof, RdvInfos rdvInfos) throws Exception;
+
+    void deleteProfessional(Long id) throws Exception;
+
 }

@@ -10,8 +10,11 @@ import services.dto.UserDto;
 import services.implementations.UserService;
 import services.interfaces.IUserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -20,9 +23,21 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         super();
-        this.userService=userService;
+        this.userService = userService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        List<UserDto> usersDto = new ArrayList<>();
+
+        for (User user : users) {
+            usersDto.add(modelMapper.map(user, UserDto.class));
+        }
+
+        return ResponseEntity.ok().body(usersDto);
     }
 
     @GetMapping("/{id}")
@@ -34,13 +49,12 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
-        try{
+        try {
             User userRequest = modelMapper.map(userDto, User.class);
             User user = userService.addUser(userRequest);
             UserDto userResponse = modelMapper.map(user, UserDto.class);
             return new ResponseEntity<UserDto>(userResponse, HttpStatus.CREATED);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             //User deja existant
             return new ResponseEntity<UserDto>(HttpStatus.NOT_ACCEPTABLE);
         }

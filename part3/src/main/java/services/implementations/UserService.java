@@ -8,6 +8,8 @@ import data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import services.interfaces.IUserService;
 
+import java.util.List;
+
 @Service
 public class UserService implements IUserService {
     private final UserRepository repository;
@@ -21,40 +23,43 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getById(Long id){
-        return repository.getUserById(id);
+    public List<User> getAllUsers() {
+        return repository.findAll();
     }
 
     @Override
-    public User getByLogin(String login){
+    public User getById(Long id) {
+        return repository.getUserById(id);
+    }
+
+
+    @Override
+    public User getByLogin(String login) {
         return repository.getUserByLogin(login);
     }
 
     @Override
-    public RendezVous addAppointement(Long utilId, Long profId, FreeSlot slot) throws Exception{
+    public RendezVous addAppointement(Long utilId, Long profId, FreeSlot slot) throws Exception {
         User util = getById(utilId);
         Professional prof = profService.getById(profId);
-        if(util!=null && prof!=null){
-            if(prof.getFreeSlots().contains(slot)){
+        if (util != null && prof != null) {
+            if (prof.getFreeSlots().contains(slot)) {
                 profService.removeFreeSlot(prof, slot);
-                return rdvService.add(new RendezVous(prof,util,slot.getStartTime(),slot.getEndTime()));
-            }
-            else{
+                return rdvService.add(new RendezVous(prof, util, slot.getStartTime(), slot.getEndTime()));
+            } else {
                 throw new Exception("Slot inexistant");
             }
-        }
-        else{
+        } else {
             throw new Exception("Professionnel ou User not found");
         }
     }
 
     @Override
     public User addUser(User util) throws Exception {
-        if(getByLogin(util.getLogin()) == null){
+        if (getByLogin(util.getLogin()) == null) {
             repository.save(util);
             return util;
-        }
-        else{
+        } else {
             throw new Exception("User déjà existant");
         }
     }

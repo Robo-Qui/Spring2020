@@ -4,7 +4,11 @@ import data.model.FreeSlot;
 import data.model.RendezVous;
 import data.model.User;
 
+import java.util.List;
+
 public interface IUserService {
+    List<User> getAllUsers();
+    
     User getById(Long id);
 
     User getByLogin(String login);

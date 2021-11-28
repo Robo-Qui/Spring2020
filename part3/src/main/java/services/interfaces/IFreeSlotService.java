@@ -8,4 +8,5 @@ public interface IFreeSlotService {
     List<FreeSlot> add(FreeSlot slot, List<FreeSlot> slots);
 
     List<FreeSlot> remove(List<FreeSlot> slots, FreeSlot slot);
+
 }
