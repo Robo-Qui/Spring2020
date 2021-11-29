@@ -1,0 +1,7 @@
+package com.taa.project.scheduler.services.interfaces;
+
+import com.taa.project.scheduler.data.model.RdvInfo;
+
+public interface IRdvInfosService {
+    RdvInfo add(RdvInfo rdvInfos);
+}
