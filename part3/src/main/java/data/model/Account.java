@@ -11,6 +11,9 @@ public class Account {
     private String login;
     private String password;
 
+    public Account() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
