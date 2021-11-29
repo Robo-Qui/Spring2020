@@ -1,11 +1,14 @@
 package com.taa.project.scheduler.services.dto;
 
+import com.taa.project.scheduler.data.model.Professional;
+
 import java.util.Date;
 
 public class FreeSlotDto {
     private Long id;
     private Date startTime;
     private Date endTime;
+    private Long professionalId;
 
     public FreeSlotDto() {
     }
@@ -32,5 +35,13 @@ public class FreeSlotDto {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Long getProfessionalId() {
+        return professionalId;
+    }
+
+    public void setProfessionalId(Professional professional) {
+        this.professionalId = professional.getId();
     }
 }

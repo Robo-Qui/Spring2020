@@ -21,22 +21,24 @@ public class FreeSlotController {
         this.freeSlotService = freeSlotService;
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<FreeSlotDto> createFreeSlot(@RequestBody FreeSlotDto freeSlotDto, @PathVariable(name = "id") Long id) throws Exception {
+    //TODFIX: how to pass both freeSlotDTO and prof_id in body
+    @PostMapping
+    public ResponseEntity<FreeSlotDto> createFreeSlot(@RequestBody FreeSlotDto freeSlotDto) {
         try {
             FreeSlot freeSlotRequest = modelMapper.map(freeSlotDto, FreeSlot.class);
-            FreeSlot freeSlot = freeSlotService.add(freeSlotRequest, id);
+            FreeSlot freeSlot = freeSlotService.add(freeSlotRequest);
             FreeSlotDto freeSlotResponse = modelMapper.map(freeSlot, FreeSlotDto.class);
             return new ResponseEntity<FreeSlotDto>(freeSlotResponse, HttpStatus.CREATED);
         } catch (Exception e) {
             //FreeSlot chevauché
+            e.printStackTrace();
             return new ResponseEntity<FreeSlotDto>(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteFreeSlot(@PathVariable(name = "id") Long id) throws Exception {
+    public ResponseEntity<String> deleteFreeSlot(@PathVariable(name = "id") Long id) {
         freeSlotService.remove(id);
-        return new ResponseEntity<String>("User deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Freeslot deleted successfully", HttpStatus.OK);
     }
 }

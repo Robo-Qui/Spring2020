@@ -2,26 +2,29 @@ package com.taa.project.scheduler.services.implementations;
 
 import com.taa.project.scheduler.data.model.FreeSlot;
 import com.taa.project.scheduler.data.repository.FreeSlotRepository;
+import com.taa.project.scheduler.data.repository.ProfessionalRepository;
 import com.taa.project.scheduler.services.interfaces.IFreeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class FreeSlotService implements IFreeSlotService {
-    private final FreeSlotRepository repository;
+    private final FreeSlotRepository freeSlotRepository;
 
-    //private IProfessionalService professionalService;
+    private final ProfessionalRepository professionalRepository;
 
     @Autowired
-    public FreeSlotService(FreeSlotRepository repository/*, IProfessionalService professionalService*/) {
-        this.repository = repository;
-        //this.professionalService = professionalService;
+    public FreeSlotService(FreeSlotRepository freeSlotRepository, ProfessionalRepository professionalRepository) {
+        this.freeSlotRepository = freeSlotRepository;
+        this.professionalRepository = professionalRepository;
     }
 
     @Override
-    public FreeSlot add(FreeSlot slot, Long id) throws Exception {
-        /*List<FreeSlot> slots = professionalService.getById(id).getFreeSlots();
+    public FreeSlot add(FreeSlot slot) throws Exception {
+        List<FreeSlot> slots = professionalRepository.getById(slot.getProfessional().getId()).getFreeSlots();
         for (FreeSlot sl : slots) {
             //si chevauchement
             if (slot.getStartTime().after(sl.getStartTime()) && slot.getStartTime().before(sl.getEndTime()) ||
@@ -29,21 +32,21 @@ public class FreeSlotService implements IFreeSlotService {
                 throw new Exception("Chevauchement de slots");
             }
         }
-        repository.save(slot);
-        slots.add(slot);*/
+        freeSlotRepository.save(slot);
+        slots.add(slot);
         return slot;
     }
 
 
     @Override
     public void remove(Long id) {
-        FreeSlot slot = repository.getById(id);
-        repository.delete(slot);
+        FreeSlot slot = freeSlotRepository.getById(id);
+        freeSlotRepository.delete(slot);
     }
 
     @Override
     public FreeSlot getById(Long freeSlotId) {
-        return repository.getById(freeSlotId);
+        return freeSlotRepository.getById(freeSlotId);
     }
 
 }
