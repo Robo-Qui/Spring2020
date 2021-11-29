@@ -22,4 +22,10 @@ public class RdvInfosService implements IRdvInfosService {
         repository.save(rdvInfos);
         return rdvInfos;
     }
+
+    @Override
+    public RdvInfo updateDuree(Long id, int duree) throws Exception {
+        return null;
+        //TODO
+    }
 }

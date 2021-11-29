@@ -1,7 +1,5 @@
 package com.taa.project.scheduler.services.interfaces;
 
-import com.taa.project.scheduler.data.model.FreeSlot;
-import com.taa.project.scheduler.data.model.RendezVous;
 import com.taa.project.scheduler.data.model.User;
 
 import java.util.List;
@@ -12,8 +10,6 @@ public interface IUserService {
     User getById(Long id);
 
     User getByLogin(String login);
-
-    RendezVous addAppointement(Long utilId, Long profId, FreeSlot slot) throws Exception;
 
     User addUser(User util) throws Exception;
 

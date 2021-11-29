@@ -2,11 +2,12 @@ package com.taa.project.scheduler.services.interfaces;
 
 import com.taa.project.scheduler.data.model.FreeSlot;
 
-import java.util.List;
-
 public interface IFreeSlotService {
-    List<FreeSlot> add(FreeSlot slot, List<FreeSlot> slots);
+    FreeSlot add(FreeSlot slot, Long profId) throws Exception;
 
-    List<FreeSlot> remove(List<FreeSlot> slots, FreeSlot slot);
+    void remove(Long id);
+
+    FreeSlot getById(Long freeSlotId);
+
 
 }

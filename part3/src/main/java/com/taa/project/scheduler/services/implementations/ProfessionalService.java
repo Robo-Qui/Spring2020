@@ -49,7 +49,8 @@ public class ProfessionalService implements IProfessionalService {
     public List<FreeSlot> addFreeSlot(Long id, FreeSlot slot) throws Exception {
         Professional prof = getById(id);
         if (prof != null && slot.getStartTime().before(slot.getEndTime())) {
-            prof.setFreeSlots(freeSlotService.add(slot, prof.getFreeSlots()));
+            //prof.setFreeSlots(freeSlotService.add(slot, prof.getId()));
+            //TODO: fix
             repository.save(prof);
             return prof.getFreeSlots();
         } else {
@@ -59,7 +60,9 @@ public class ProfessionalService implements IProfessionalService {
 
     @Override
     public List<FreeSlot> removeFreeSlot(Professional prof, FreeSlot slot) {
-        prof.setFreeSlots(freeSlotService.remove(prof.getFreeSlots(), slot));
+        //remove from freeslots
+        //freeSlotService.remove(prof, slot);
+        //TODO
         repository.save(prof);
         return prof.getFreeSlots();
     }

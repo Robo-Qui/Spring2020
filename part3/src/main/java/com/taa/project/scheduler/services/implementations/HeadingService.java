@@ -24,4 +24,10 @@ public class HeadingService implements IHeadingService {
         }
         return intitules;
     }
+
+    @Override
+    public Heading createHeading(String intitule) {
+        return null;
+        //TODO
+    }
 }
