@@ -2,7 +2,7 @@ package com.taa.project.scheduler.controllers;
 
 
 import com.taa.project.scheduler.data.model.RdvInfo;
-import com.taa.project.scheduler.services.dto.RdvInfosDto;
+import com.taa.project.scheduler.services.dto.RdvInfoDto;
 import com.taa.project.scheduler.services.interfaces.IRdvInfosService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,10 @@ public class RdvInfoController {
     }
 
     @PutMapping("/{id}/duree")
-    public ResponseEntity<RdvInfosDto> updateDuree(@PathVariable(name = "id") Long id, @RequestBody int duree) throws Exception {
+    public ResponseEntity<RdvInfoDto> updateDuree(@PathVariable(name = "id") Long id, @RequestBody int duree) throws Exception {
         RdvInfo infos = rdvInfosService.updateDuree(id, duree);
-        RdvInfosDto rdvInfosResponse = modelMapper.map(infos, RdvInfosDto.class);
-        return new ResponseEntity<RdvInfosDto>(rdvInfosResponse, HttpStatus.CREATED);
+        RdvInfoDto rdvInfosResponse = modelMapper.map(infos, RdvInfoDto.class);
+        return new ResponseEntity<RdvInfoDto>(rdvInfosResponse, HttpStatus.CREATED);
     }
 }
 
