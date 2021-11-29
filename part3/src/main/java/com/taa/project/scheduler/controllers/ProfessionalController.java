@@ -30,7 +30,7 @@ public class ProfessionalController {
         this.freeSlotService = freeSlotService;
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ProfessionalDto>> getAllProfessionals() {
         List<Professional> professionals = professionalService.getAllProfessionals();
         List<ProfessionalDto> professionalsDto = new ArrayList<>();
@@ -43,23 +43,33 @@ public class ProfessionalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProfessionalDto> getProfessionalById(@PathVariable(name = "id") Long id) {
-        Professional professional = professionalService.getById(id);
-        ProfessionalDto professionalResponse = modelMapper.map(professional, ProfessionalDto.class);
-        return ResponseEntity.ok().body(professionalResponse);
+    public ResponseEntity<?> getProfessionalById(@PathVariable(name = "id") Long id) {
+        try {
+            Professional professional = professionalService.getById(id);
+            ProfessionalDto professionalResponse = modelMapper.map(professional, ProfessionalDto.class);
+            return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't retrieve this professional.", HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @GetMapping("/{id}/freeSlots")
-    public ResponseEntity<List<FreeSlotDto>> getFreeSlotsByProfessional(@PathVariable(name = "id") Long id) {
-        Professional professional = professionalService.getById(id);
-        List<FreeSlot> freeSlots = professional.getFreeSlots();
-        List<FreeSlotDto> freeSlotDtos = new ArrayList<>();
+    public ResponseEntity<?> getFreeSlotsByProfessional(@PathVariable(name = "id") Long id) {
+        try {
+            Professional professional = professionalService.getById(id);
+            List<FreeSlot> freeSlots = professional.getFreeSlots();
+            List<FreeSlotDto> freeSlotDtos = new ArrayList<>();
 
-        for (FreeSlot freeSlot : freeSlots) {
-            freeSlotDtos.add(modelMapper.map(freeSlot, FreeSlotDto.class));
+            for (FreeSlot freeSlot : freeSlots) {
+                freeSlotDtos.add(modelMapper.map(freeSlot, FreeSlotDto.class));
+            }
+
+            return new ResponseEntity<List<FreeSlotDto>>(freeSlotDtos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't retrieve this professional.", HttpStatus.NOT_FOUND);
         }
-
-        return ResponseEntity.ok().body(freeSlotDtos);
     }
 
     /* TODO
@@ -78,7 +88,7 @@ public class ProfessionalController {
      */
 
     @PostMapping
-    public ResponseEntity<ProfessionalDto> createProfessional(@RequestBody ProfessionalDto professionalDto) throws Exception {
+    public ResponseEntity<?> createProfessional(@RequestBody ProfessionalDto professionalDto) {
         try {
             Professional professionalRequest = modelMapper.map(professionalDto, Professional.class);
             Professional professional = professionalService.addProfessionnel(professionalRequest);
@@ -86,23 +96,31 @@ public class ProfessionalController {
             return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.CREATED);
         } catch (Exception e) {
             //Professionel deja existant
-            return new ResponseEntity<ProfessionalDto>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<String>("Professional already exists", HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProfessionalDto> updateProfessional(@PathVariable long id, @RequestBody ProfessionalDto professionalDto) throws Exception {
+    public ResponseEntity<?> updateProfessional(@PathVariable long id, @RequestBody ProfessionalDto professionalDto) {
+        try {
 
-        Professional professionalRequest = modelMapper.map(professionalDto, Professional.class);
-        Professional professional = professionalService.updateProfessional(id, professionalRequest);
-        ProfessionalDto professionalResponse = modelMapper.map(professional, ProfessionalDto.class);
-        return ResponseEntity.ok().body(professionalResponse);
+            Professional professionalRequest = modelMapper.map(professionalDto, Professional.class);
+            Professional professional = professionalService.updateProfessional(id, professionalRequest);
+            ProfessionalDto professionalResponse = modelMapper.map(professional, ProfessionalDto.class);
+            return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't delete this professional", HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProfessional(@PathVariable(name = "id") Long id) throws Exception {
-        professionalService.deleteProfessional(id);
-        return new ResponseEntity<String>("Professional deleted successfully", HttpStatus.OK);
+    public ResponseEntity<String> deleteProfessional(@PathVariable(name = "id") Long id) {
+        try {
+            professionalService.deleteProfessional(id);
+            return new ResponseEntity<String>("Professional deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't delete this professional", HttpStatus.NOT_FOUND);
+        }
     }
 
 

@@ -11,7 +11,7 @@ public class ProfessionalDto extends AccountDto {
 
     public ProfessionalDto() {
     }
-
+    
     public Long getId() {
         return id;
     }

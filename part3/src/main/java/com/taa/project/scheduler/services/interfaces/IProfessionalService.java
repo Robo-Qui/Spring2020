@@ -9,7 +9,7 @@ import java.util.List;
 public interface IProfessionalService {
     List<Professional> getAllProfessionals();
 
-    Professional getById(Long id);
+    Professional getById(Long id) throws Exception;
 
     Professional getByLogin(String login);
 

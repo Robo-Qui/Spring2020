@@ -41,14 +41,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id) {
-        User user = userService.getById(id);
-        UserDto userResponse = modelMapper.map(user, UserDto.class);
-        return ResponseEntity.ok().body(userResponse);
+    public ResponseEntity<?> getUserById(@PathVariable(name = "id") Long id) {
+
+        try {
+            User user = userService.getById(id);
+            UserDto userResponse = modelMapper.map(user, UserDto.class);
+            return new ResponseEntity<UserDto>(userResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't retrieve this user.", HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         try {
             User userRequest = modelMapper.map(userDto, User.class);
             User user = userService.addUser(userRequest);
@@ -56,22 +61,30 @@ public class UserController {
             return new ResponseEntity<UserDto>(userResponse, HttpStatus.CREATED);
         } catch (Exception e) {
             //User deja existant
-            return new ResponseEntity<UserDto>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<String>("User already exists", HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable long id, @RequestBody UserDto userDto) throws Exception {
+    public ResponseEntity<?> updateUser(@PathVariable long id, @RequestBody UserDto userDto) {
+        try {
+            User userRequest = modelMapper.map(userDto, User.class);
+            User user = userService.updateUser(id, userRequest);
+            UserDto userResponse = modelMapper.map(user, UserDto.class);
+            return new ResponseEntity<UserDto>(userResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't delete user", HttpStatus.NOT_FOUND);
+        }
 
-        User userRequest = modelMapper.map(userDto, User.class);
-        User user = userService.updateUser(id, userRequest);
-        UserDto userResponse = modelMapper.map(user, UserDto.class);
-        return ResponseEntity.ok().body(userResponse);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id) throws Exception {
-        userService.deleteUser(id);
-        return new ResponseEntity<String>("User deleted successfully", HttpStatus.OK);
+    public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id) {
+        try {
+            userService.deleteUser(id);
+            return new ResponseEntity<String>("User deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>("Can't delete user", HttpStatus.NOT_FOUND);
+        }
     }
 }

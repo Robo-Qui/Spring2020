@@ -3,12 +3,22 @@ package com.taa.project.scheduler.services.dto;
 import java.util.List;
 
 public class RdvInfoDto {
+    private Long id;
     private int duree;
     private List<HeadingDto> intitules;
 
     public RdvInfoDto(int duree, List<HeadingDto> intitules) {
         this.duree = duree;
         this.intitules = intitules;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getDuree() {

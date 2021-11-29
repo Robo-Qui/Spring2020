@@ -12,10 +12,9 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
     private final UserRepository repository;
-
-    @Autowired
     private IProfessionalService profService;
 
+    @Autowired
     public UserService(UserRepository repository, ProfessionalService profService) {
         this.repository = repository;
         this.profService = profService;
@@ -27,8 +26,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getById(Long id) {
-        return repository.getUserById(id);
+    public User getById(Long id) throws Exception {
+        try {
+            return repository.getUserById(id);
+        } catch (Exception e) {
+            throw new Exception("Can't retrieve this user.");
+        }
     }
 
 
@@ -39,6 +42,7 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(User util) throws Exception {
+        //if login doesn't exist yet
         if (getByLogin(util.getLogin()) == null) {
             repository.save(util);
             return util;

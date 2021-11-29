@@ -31,8 +31,12 @@ public class ProfessionalService implements IProfessionalService {
     }
 
     @Override
-    public Professional getById(Long id) {
-        return repository.getProfessionalById(id);
+    public Professional getById(Long id) throws Exception {
+        try {
+            return repository.getProfessionalById(id);
+        } catch (Exception e) {
+            throw new Exception("Can't retrieve this professional.");
+        }
     }
 
     @Override
@@ -69,6 +73,7 @@ public class ProfessionalService implements IProfessionalService {
 
     @Override
     public Professional addProfessionnel(Professional prof) throws Exception {
+        //if login and name don't exist yet
         if (getByName(prof.getName()) == null && getByLogin(prof.getLogin()) == null) {
             repository.save(prof);
             return prof;
@@ -83,6 +88,7 @@ public class ProfessionalService implements IProfessionalService {
                 .orElseThrow(() -> new Exception("Professional not found"));
         professional.setLogin(professionalRequest.getLogin());
         professional.setPassword(professionalRequest.getPassword());
+        professional.setName(professionalRequest.getName());
         return repository.save(professional);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IUserService {
     List<User> getAllUsers();
 
-    User getById(Long id);
+    User getById(Long id) throws Exception;
 
     User getByLogin(String login);
 

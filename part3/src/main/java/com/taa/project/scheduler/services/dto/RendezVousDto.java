@@ -3,12 +3,21 @@ package com.taa.project.scheduler.services.dto;
 import java.util.Date;
 
 public class RendezVousDto {
+    private Long id;
     private ProfessionalDto prof;
     private UserDto client;
     private Date startTime;
     private Date endTime;
 
     public RendezVousDto() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public ProfessionalDto getProf() {
