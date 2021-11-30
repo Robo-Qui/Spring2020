@@ -1,6 +1,7 @@
 package com.taa.project.scheduler.services.implementations;
 
 import com.taa.project.scheduler.data.model.FreeSlot;
+import com.taa.project.scheduler.data.model.Professional;
 import com.taa.project.scheduler.data.repository.FreeSlotRepository;
 import com.taa.project.scheduler.data.repository.ProfessionalRepository;
 import com.taa.project.scheduler.services.interfaces.IFreeSlotService;
@@ -23,17 +24,30 @@ public class FreeSlotService implements IFreeSlotService {
     }
 
     @Override
-    public FreeSlot add(FreeSlot slot) throws Exception {
-        List<FreeSlot> slots = professionalRepository.getById(slot.getProfessional().getId()).getFreeSlots();
+    public FreeSlot add(FreeSlot slot, Long profId) throws Exception {
+        //Get prof
+        Professional professional = professionalRepository.getById(profId);
+
+        //Get his freeslots
+        List<FreeSlot> slots = professional.getFreeSlots();
         for (FreeSlot sl : slots) {
             //si chevauchement
+            //TOFIX: seems that its not working
             if (slot.getStartTime().after(sl.getStartTime()) && slot.getStartTime().before(sl.getEndTime()) ||
                     slot.getEndTime().before(sl.getEndTime()) && slot.getEndTime().after(sl.getStartTime())) {
                 throw new Exception("Chevauchement de slots");
             }
         }
-        freeSlotRepository.save(slot);
+
+        //If ok, persist
+        slot = freeSlotRepository.save(slot);
+
+        // add to list for pro
         slots.add(slot);
+        professional.setFreeSlots(slots);
+        //persist
+        professionalRepository.save(professional);
+
         return slot;
     }
 

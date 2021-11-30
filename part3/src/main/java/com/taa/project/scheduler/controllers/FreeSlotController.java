@@ -2,6 +2,7 @@ package com.taa.project.scheduler.controllers;
 
 import com.taa.project.scheduler.data.model.FreeSlot;
 import com.taa.project.scheduler.services.dto.FreeSlotDto;
+import com.taa.project.scheduler.services.dto.FreeslotCreationRequest;
 import com.taa.project.scheduler.services.interfaces.IFreeSlotService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,19 @@ public class FreeSlotController {
 
     //TODFIX: how to pass both freeSlotDTO and prof_id in body
     @PostMapping
-    public ResponseEntity<FreeSlotDto> createFreeSlot(@RequestBody FreeSlotDto freeSlotDto) {
+    public ResponseEntity<FreeSlotDto> createFreeSlot(@RequestBody FreeslotCreationRequest freeslotCreationRequest) {
         try {
+            //Get items from request
+            FreeSlotDto freeSlotDto = freeslotCreationRequest.getFreeSlotDto();
+            Long professional_id = freeslotCreationRequest.getProfessional_id();
+
+            //Transform to freeslot
             FreeSlot freeSlotRequest = modelMapper.map(freeSlotDto, FreeSlot.class);
-            FreeSlot freeSlot = freeSlotService.add(freeSlotRequest);
+
+            //Request db
+            FreeSlot freeSlot = freeSlotService.add(freeSlotRequest, professional_id);
+
+            //Transform to DTO
             FreeSlotDto freeSlotResponse = modelMapper.map(freeSlot, FreeSlotDto.class);
             return new ResponseEntity<FreeSlotDto>(freeSlotResponse, HttpStatus.CREATED);
         } catch (Exception e) {

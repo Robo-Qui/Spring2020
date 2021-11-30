@@ -275,7 +275,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"professional_id\" : \"8\",\r\n    \"startTime\" : \"2021-11-29T14:41:13Z\",\r\n    \"endTime\" : \"2021-11-29T16:41:13Z\"\r\n}",
+									"raw": "{\r\n    \"professional_id\" : \"6\",\r\n    \"freeSlot\": {\r\n        \"startTime\" : \"2021-11-29T14:41:13Z\",\r\n        \"endTime\" : \"2021-11-29T16:41:13Z\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
