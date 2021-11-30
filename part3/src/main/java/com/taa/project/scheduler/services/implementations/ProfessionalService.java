@@ -50,28 +50,6 @@ public class ProfessionalService implements IProfessionalService {
     }
 
     @Override
-    public List<FreeSlot> addFreeSlot(Long id, FreeSlot slot) throws Exception {
-        Professional prof = getById(id);
-        if (prof != null && slot.getStartTime().before(slot.getEndTime())) {
-            //prof.setFreeSlots(freeSlotService.add(slot, prof.getId()));
-            //TODO: fix
-            repository.save(prof);
-            return prof.getFreeSlots();
-        } else {
-            throw new Exception("Account not found or startime must be before endtime");
-        }
-    }
-
-    @Override
-    public List<FreeSlot> removeFreeSlot(Professional prof, FreeSlot slot) {
-        //remove from freeslots
-        //freeSlotService.remove(prof, slot);
-        //TODO
-        repository.save(prof);
-        return prof.getFreeSlots();
-    }
-
-    @Override
     public Professional addProfessionnel(Professional prof) throws Exception {
         //if login and name don't exist yet
         if (getByName(prof.getName()) == null && getByLogin(prof.getLogin()) == null) {
