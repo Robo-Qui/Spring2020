@@ -96,6 +96,7 @@ public class ProfessionalController {
             return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.CREATED);
         } catch (Exception e) {
             //Professionel deja existant
+            e.printStackTrace();
             return new ResponseEntity<String>("Professional already exists", HttpStatus.NOT_ACCEPTABLE);
         }
     }

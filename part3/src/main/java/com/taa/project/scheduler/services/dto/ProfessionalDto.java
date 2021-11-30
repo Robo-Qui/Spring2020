@@ -10,8 +10,9 @@ public class ProfessionalDto extends AccountDto {
     private List<FreeSlotDto> freeSlots;
 
     public ProfessionalDto() {
+        super();
     }
-    
+
     public Long getId() {
         return id;
     }

@@ -2,7 +2,7 @@ package com.taa.project.scheduler.services.dto;
 
 public class HeadingDto {
     private Long id;
-    private String intitule;
+    private String label;
 
     public HeadingDto() {
     }
@@ -15,11 +15,11 @@ public class HeadingDto {
         this.id = id;
     }
 
-    public String getIntitule() {
-        return intitule;
+    public String getLabel() {
+        return label;
     }
 
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
+    public void setLabel(String label) {
+        this.label = label;
     }
 }

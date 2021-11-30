@@ -3,6 +3,7 @@ package com.taa.project.scheduler.services.implementations;
 import com.taa.project.scheduler.data.model.FreeSlot;
 import com.taa.project.scheduler.data.model.Professional;
 import com.taa.project.scheduler.data.model.RdvInfo;
+import com.taa.project.scheduler.data.model.RendezVous;
 import com.taa.project.scheduler.data.repository.ProfessionalRepository;
 import com.taa.project.scheduler.services.interfaces.IFreeSlotService;
 import com.taa.project.scheduler.services.interfaces.IProfessionalService;
@@ -10,6 +11,7 @@ import com.taa.project.scheduler.services.interfaces.IRdvInfosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,12 +75,22 @@ public class ProfessionalService implements IProfessionalService {
 
     @Override
     public Professional addProfessionnel(Professional prof) throws Exception {
-        //if login and name don't exist yet
-        if (getByName(prof.getName()) == null && getByLogin(prof.getLogin()) == null) {
-            repository.save(prof);
-            return prof;
-        } else {
-            throw new Exception("Ce professionnel existe déjà");
+        try {
+            //if login and name don't exist yet
+            if (getByName(prof.getName()) == null && getByLogin(prof.getLogin()) == null) {
+                prof.setFreeSlots(new ArrayList<FreeSlot>());
+                prof.setRendezVousList(new ArrayList<RendezVous>());
+                prof.setInfoRdv(new RdvInfo());
+                prof = repository.save(prof);
+                return prof;
+            } else {
+                throw new Exception("Ce professionnel existe déjà");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Ne peux pas ajouter ce professionel");
+
         }
     }
 

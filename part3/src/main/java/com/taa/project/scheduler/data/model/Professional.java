@@ -1,9 +1,6 @@
 package com.taa.project.scheduler.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -28,7 +25,7 @@ public class Professional extends Account {
         this.name = name;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public RdvInfo getInfoRdv() {
         return infoRdv;
     }
@@ -37,7 +34,7 @@ public class Professional extends Account {
         this.infoRdv = infoRdv;
     }
 
-    @OneToMany(mappedBy = "professional")
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL)
     public List<FreeSlot> getFreeSlots() {
         return freeSlots;
     }
@@ -46,7 +43,7 @@ public class Professional extends Account {
         this.freeSlots = freeSlots;
     }
 
-    @OneToMany(mappedBy = "professional")
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL)
     public List<RendezVous> getRendezVousList() {
         return rendezVousList;
     }

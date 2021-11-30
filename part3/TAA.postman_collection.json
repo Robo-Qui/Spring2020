@@ -144,7 +144,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"login\" : \"Bertrand\",\r\n    \"password\" : \"Bertrand\",\r\n    \"name\" : \"Bertrand\"\r\n}",
+									"raw": "{\r\n    \"login\" : \"Bibi\",\r\n    \"password\" : \"Bibi\",\r\n    \"name\" : \"Bibi\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -259,12 +259,7 @@
 							"response": []
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "TOCHECK",
-			"item": [
+				},
 				{
 					"name": "FreeSlots",
 					"item": [
@@ -303,7 +298,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8081/api/freeslots/1",
+									"raw": "http://localhost:8081/api/freeslots/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -312,7 +307,7 @@
 									"path": [
 										"api",
 										"freeslots",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -320,6 +315,45 @@
 						}
 					]
 				},
+				{
+					"name": "Headings",
+					"item": [
+						{
+							"name": "CreateHeading",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rdvInfoId\": 4,\r\n    \"heading\":{\r\n        \"label\": \"Chirurgie dentaire\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/headings",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"headings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "TOCHECK",
+			"item": [
 				{
 					"name": "RendezVous",
 					"item": [
@@ -371,31 +405,6 @@
 										"api",
 										"rendezvous",
 										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Headings",
-					"item": [
-						{
-							"name": "CreateHeading",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8081/api/headings",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8081",
-									"path": [
-										"api",
-										"headings"
 									]
 								}
 							},

@@ -7,6 +7,6 @@ import java.util.List;
 public interface IHeadingService {
     List<Heading> add(List<Heading> intitules);
 
-    Heading createHeading(String intitule);
+    Heading createHeading(Heading heading, Long rdvInfoId);
 
 }

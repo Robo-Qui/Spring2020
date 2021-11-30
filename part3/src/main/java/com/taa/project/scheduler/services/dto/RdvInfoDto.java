@@ -7,6 +7,9 @@ public class RdvInfoDto {
     private int duree;
     private List<HeadingDto> intitules;
 
+    public RdvInfoDto() {
+    }
+
     public RdvInfoDto(int duree, List<HeadingDto> intitules) {
         this.duree = duree;
         this.intitules = intitules;
