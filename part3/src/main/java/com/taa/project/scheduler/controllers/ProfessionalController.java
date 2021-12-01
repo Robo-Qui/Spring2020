@@ -108,7 +108,7 @@ public class ProfessionalController {
             Professional professionalRequest = modelMapper.map(professionalDto, Professional.class);
             Professional professional = professionalService.updateProfessional(id, professionalRequest);
             ProfessionalDto professionalResponse = modelMapper.map(professional, ProfessionalDto.class);
-            return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.OK);
+            return new ResponseEntity<ProfessionalDto>(professionalResponse, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<String>("Can't delete this professional", HttpStatus.NOT_FOUND);
         }
