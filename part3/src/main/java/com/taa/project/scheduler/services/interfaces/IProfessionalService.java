@@ -15,10 +15,6 @@ public interface IProfessionalService {
 
     Professional getByName(String name);
 
-    List<FreeSlot> addFreeSlot(Long id, FreeSlot slot) throws Exception;
-
-    List<FreeSlot> removeFreeSlot(Professional prof, FreeSlot slot);
-
     Professional addProfessionnel(Professional prof) throws Exception;
 
     Professional updateProfessional(long id, Professional professionalRequest) throws Exception;

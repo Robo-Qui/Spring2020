@@ -33,16 +33,10 @@ public class RendezVousService implements IRendezVousService {
         User user = userService.getById(utilId);
         Professional professional = professionalService.getById(profId);
         FreeSlot freeSlot = freeSlotService.getById(freeSlotId);
-
-        if (professional.getFreeSlots().contains(freeSlot)) {
-            //TODO: set heading
-            RendezVous rendezVous = new RendezVous(user, professional, null, freeSlot.getStartTime(), freeSlot.getEndTime());
-            repository.save(rendezVous);
-            freeSlotService.remove(freeSlotId);
-            return rendezVous;
-        } else {
-            throw new Exception("The requested freeslot doesn't exists");
-        }
+        RendezVous rendezVous = new RendezVous(user, professional, null, freeSlot.getStartTime(), freeSlot.getEndTime());
+        repository.save(rendezVous);
+        freeSlotService.remove(freeSlotId);
+        return rendezVous;
     }
 
     @Override
