@@ -16,3 +16,16 @@ services:
       - db
     ports:
       - "8082:80"
+
+  # Uncomment if you also want to deploy this service (build the image first)
+#  rest_api:
+#    image: taa_project
+#    restart: on-failure
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/taa_project?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: my-secret-pw
+#    depends_on:
+#      - db
+#    ports:
+#      - "8081:8081"
